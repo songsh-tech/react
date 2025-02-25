@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 // Properties (속성)
 // - 부모 컴포넌트(호출부)에서 자식 컴포넌트로 데이터를 전달하기 위한 *객체*
@@ -14,23 +14,56 @@ interface Props {
   contents: string;
 }
 
-function Article(props: Props) {
+function Article( { title, subTitle, contents } : Props) {
+
+  // const { title, subTitle, contents }= props;
 
   return (
     <article style={{ border: '1px solid gray', marginBottom: '8px' }}>
-      <h1>{props.title}</h1>
-      <h3>{props.subTitle}</h3>
-      <p>{props.contents}</p>
+      <h1>{title}</h1>
+      <h3>{subTitle}</h3>
+      <p>{contents}</p>
     </article>
   )
 }
 
-export default function Properties() {
+interface Props2 {
+  getTitle: () => string;
+  children: ReactNode
+}
+
+function Child(props: Props2) {
+
   return (
     <div>
-      <Article />
-      <Article />
-      <Article />
+      <h1>{props.getTitle()}</h1>
+      {props.children}
+    </div>
+  )
+
+}
+
+export default function Properties() {
+
+  const article = {
+    title: '발로 뛰는 대신 AI로',
+    subTitle: 'AI가 기업을 바꾼다.',
+    contents: '제품도 뛰어난데 무엇보다......'
+  }
+
+  const getTitle = () => {
+    return '컴포넌트 관리';
+  }
+
+  return (
+    <div>
+      <Article title='애들 보는거 아닌가요? 찬밥신세...' subTitle='C애니의 습격... 길 잃은 K애니' contents='한때 한국 애니의 갑절......' />
+      <Article title={article.title} subTitle={article.subTitle} contents={article.contents} />
+      <Article {...article} />
+
+      <Child getTitle={getTitle}>
+        <p>익숙한 속성...</p>
+      </Child>
     </div>
   )
 }
