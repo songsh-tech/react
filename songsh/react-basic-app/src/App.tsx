@@ -9,6 +9,7 @@ import ConditionRender from './component-manage/ConditionRender';
 import ListRender from './component-manage/ListRender';
 import EventComponent from './interaction/EventComponent';
 import StateComponent from './interaction/StateComponent';
+import ForwardingComponent from './interaction/ForwardingComponent';
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
       {/* <ConditionRender /> */}
       {/* <ListRender /> */}
       {/* <EventComponent /> */}
-      <StateComponent />
+      {/* <StateComponent /> */}
+      <ForwardingComponent />
     </div>
   );
 }
