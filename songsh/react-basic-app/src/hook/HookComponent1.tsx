@@ -78,10 +78,15 @@ export default function HookComponent1() {
 function SubComponent() {
 
   // unmount 단계에서만 특정 함수 호출
+  // 콜백 함수의 반환 함수로 지정
   useEffect(() => {
-    console.log('sub 컴포넌트 마운트!!')
+    console.log('sub 컴포넌트 마운트!!');
+
+    return () => {
+      console.log('Sub 컴포넌트 언마운트!!');
+    }
   }, []);
-  
+
   return (
     <h1 style={{ color: 'red' }}>Sub Component!</h1>
   )
