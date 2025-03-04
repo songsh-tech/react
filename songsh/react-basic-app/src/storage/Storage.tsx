@@ -54,14 +54,32 @@ export default function Storage() {
     setStorageValue(value ? value : '');
   };
 
+  const onRemoveStorage = () => {
+    // 스토리지 데이터 삭제
+    // localStorage.removeItem(key);
+    localStorage.removeItem(storageKey);
+  };
+
+  const onClearStorage = () => {
+    // 스토리지 데이터 모두 삭제
+    // localStorage.clear();
+    localStorage.clear();
+  };
+
+  const onSessionStorageSave = () => {
+    // 세션 스토리지에 작업을 하려면 sessionStorage 내장 객체 이용
+    sessionStorage.setItem(storageKey, storageValue);
+  };
+
   return (
     <div>
       스토리지 키: <input value={storageKey} onChange={onStorageKeyChange} />
       스토리지 값: <input value={storageValue} onChange={onStorageValueChange} />
       <button onClick={onStorageSave}>저장</button>
       <button onClick={onGetStorageValue}>검색</button>
-      <button>삭제</button>
-      <button>모두 삭제</button>
+      <button onClick={onRemoveStorage}>삭제</button>
+      <button onClick={onClearStorage}>모두 삭제</button>
+      <button onClick={onSessionStorageSave}>세션 스토리지로 저장</button>
     </div>
   )
 }
